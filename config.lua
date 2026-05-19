@@ -5,7 +5,7 @@ Config.debug = false
 Config.useOxInventory = GetResourceState('ox_inventory'):find('start')
 
 Config.clothingScript = 'illenium-appearance' -- 'illenium-appearance', 'fivem-appearance', 'core' or false -- to disable
-Config.emsJobs = { "ambulance", "ems" }
+Config.emsJobs = { "ambulance", "ems", "bombeiro", "medico" }
 Config.respawnTime = 5                        -- in minutes
 Config.waitTimeForNewCall = 5                 -- minutes
 
@@ -52,6 +52,7 @@ Config.ejectDeadFromVehicle = true   -- OPÇÃO ZAP: true >> ejects the dead pla
 Config.emsVehicles = {                -- vehicles that have access to the props (cones and ecc..)
 	ambulance = true,
 	ambulance2 = true,
+	firetruk = true,
 }
 
 Config.animations = {
@@ -71,8 +72,8 @@ Config.animations = {
 
 Config.Discord = {
     Settings = {
-        Webhook = 'https://discord.com/api/webhooks/1439748850590941226/2MyckiBZ3qqxX9u0LlsGVhBzE6eJB-5JuPN45UJ-tfagc7mOsXdY34b3SjehtVDKp2Th',
-        Name = 'MRI QBOX - Deathlog',
+        Webhook = 'https://discord.com/api/webhooks/1458861934278344736/xOlg6jzNZIkB12xCzXlxDADFOOk2QT9ZzTbnvpQJDgou-fIuUDe11b-4I_JXllz_aOYt',
+        Name = 'Zona Norte - Deathlog',
         Images = 'https://i.imgur.com/QjLjjYZ.png'
     },
 }

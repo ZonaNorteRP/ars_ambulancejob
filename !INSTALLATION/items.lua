@@ -3,7 +3,10 @@
     weight = 100,
     stack = false,
     close = true,
-    description = "Acorda até defunto."
+    description = "Acorda até defunto.",
+    client = {
+        export = "ars_ambulancejob.useAdrenaline"
+    }
 },
 ["medicalbag"] = {
     label = "Bolsa de Primeiros Socorros",

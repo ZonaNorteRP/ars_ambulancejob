@@ -203,14 +203,91 @@ RegisterNetEvent('ars_ambulancejob:reviveWithAdrenaline')
 AddEventHandler('ars_ambulancejob:reviveWithAdrenaline', function(targetPlayerId)
     local src = source
 
-    if exports.ox_inventory:RemoveItem(src, 'adrenaline', 1) then
-        local dataToSend = {}
-        dataToSend.revive = true
-
-        TriggerClientEvent('ars_ambulancejob:healPlayer', tonumber(targetPlayerId), dataToSend)
-
-        lib.notify({ title = 'Adrenalina', description = 'Adrenalina aplicada com sucesso!', type = 'success', id = tostring(src) })
-    else
-        lib.notify({ title = 'Adrenalina', description = 'Você não tem adrenalina.', type = 'error', id = tostring(src) })
+    -- Verifica se o player tem adrenalina no inventário
+    if not exports.ox_inventory:RemoveItem(src, 'adrenaline', 1) then
+        lib.notify({
+            title = 'Adrenalina',
+            description = 'Você não tem adrenalina.',
+            type = 'error'
+        }, src)
+        return
     end
+
+    -- Verifica se o target existe
+    if not targetPlayerId or targetPlayerId == 0 then
+        lib.notify({
+            title = 'Adrenalina',
+            description = 'Player não encontrado.',
+            type = 'error'
+        }, src)
+        -- Devolve o item
+        exports.ox_inventory:AddItem(src, 'adrenaline', 1)
+        return
+    end
+
+    -- Revive o player alvo
+    local dataToSend = {}
+    dataToSend.revive = true
+
+    TriggerClientEvent('ars_ambulancejob:healPlayer', tonumber(targetPlayerId), dataToSend)
+
+    -- Aguarda um pouco e força o revive se necessário
+    Wait(1000)
+
+    -- Força a atualização do status de morte
+    local deathStatus = { isDead = false }
+    player[targetPlayerId] = player[targetPlayerId] or {}
+    player[targetPlayerId].isDead = false
+
+    -- Notifica sucesso
+    lib.notify({
+        title = 'Adrenalina',
+        description = 'Adrenalina aplicada com sucesso!',
+        type = 'success'
+    }, src)
+
+    -- Notifica o player que foi revivido
+    lib.notify({
+        title = 'Revivido',
+        description = 'Você foi revivido com adrenalina!',
+        type = 'success'
+    }, targetPlayerId)
+
+    print("^2[ADRENALINA]^7 Player " .. src .. " reviveu o player " .. targetPlayerId .. " com adrenalina")
 end)
+
+-- NPC Revive Webhook Log
+local npcReviveWebhook = 'https://discord.com/api/webhooks/1481748126799761460/yR6vZ5nBDh3lGDTauBXHA8-rKDw-4HFNmw94dS0qUXF3nLJOEgfrLn9_31ykBwkjq7Ov'
+
+RegisterNetEvent("ars_ambulancejob:npcReviveLog", function()
+    local source = source
+    if not source or source < 1 then return end
+    
+    local playerName = GetPlayerName(source)
+    local discordId = "Não encontrado"
+    local license = "Não encontrada"
+    
+    for k, v in ipairs(GetPlayerIdentifiers(source)) do
+        if string.sub(v, 1, string.len("discord:")) == "discord:" then
+            discordId = "<@" .. string.sub(v, 9) .. ">"
+        elseif string.sub(v, 1, string.len("license:")) == "license:" then
+            license = string.sub(v, 9)
+        end
+    end
+    
+    local msg = string.format("O jogador **%s** (ID: %s) foi socorrido e revivido com sucesso pelo **MÉDICO NPC** (/socorro).\n**Discord:** %s\n**License:** %s", playerName, source, discordId, license)
+    
+    local embed = {
+        {
+            ["title"] = "🏥 LOG - NPC REVIVE",
+            ["description"] = msg,
+            ["color"] = 3447003,
+            ["footer"] = {
+                ["text"] = "Zona Norte - Ambulance Job | " .. os.date("%d/%m/%Y %H:%M:%S")
+            }
+        }
+    }
+
+    PerformHttpRequest(npcReviveWebhook, function(err, text, headers) end, 'POST', json.encode({username = "Hospital Log", embeds = embed}), { ['Content-Type'] = 'application/json' })
+end)
+

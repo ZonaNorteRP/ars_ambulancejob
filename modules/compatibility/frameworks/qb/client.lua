@@ -217,10 +217,18 @@ function Framework.hasJob(jobs)
 
     if type(jobs) == "table" then
         for index, jobName in pairs(jobs) do
-            if playerData.job.name == jobName then return true end
+            if playerData.job.name == jobName then
+                if jobName == "bombeiro" or jobName == "medico" or playerData.job.onduty then
+                    return true
+                end
+            end
         end
     else
-        return playerData.job.name == jobs
+        if playerData.job.name == jobs then
+            if jobs == "bombeiro" or jobs == "medico" or playerData.job.onduty then
+                return true
+            end
+        end
     end
 
     return false
@@ -239,7 +247,6 @@ function Framework.healStatus()
 
     TriggerServerEvent('consumables:server:addHunger', playerData.metadata.hunger + 100000)
     TriggerServerEvent('consumables:server:addThirst', playerData.metadata.hunger + 100000)
-    TriggerServerEvent('hud:server:RelieveStress', 100)
 end
 
 function Framework.hasItem(item, _quantity)

@@ -232,7 +232,7 @@ local function initPlayerDeath(logged_dead)
     if useExtraEffects then
         ShakeGameplayCam('DEATH_FAIL_IN_EFFECT_SHAKE', 1.0)
         AnimpostfxPlay('DeathFailOut', 0, true)
-        showScaleform("~r~se fodeu", 20)
+        -- showScaleform("~r~se fodeu", 20) -- Tela de morte removida
 
         Wait(4000)
 

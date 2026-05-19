@@ -160,6 +160,28 @@ end
 
 local function offlineRevive()
     if not player.isDead then return end
+    
+    local causeOfDeath = LocalPlayer.state.deathweapon or GetPedCauseOfDeath(cache.ped or PlayerPedId())
+    if causeOfDeath and causeOfDeath ~= 0 then
+        local weaponGroup = GetWeapontypeGroup(causeOfDeath)
+        -- Groups for firearms: Pistol=416676503, AssaultRifle=970310034, Shotgun=860033945, LMG=1159398588, SMG=3337201093/-957766203, Sniper=3082541095/-1212426201, Heavy=2725924767/-1569042529
+        local fireWeaponGroups = {
+            [416676503] = true,
+            [970310034] = true,
+            [860033945] = true,
+            [1159398588] = true,
+            [3337201093] = true,
+            [-957766203] = true,
+            [3082541095] = true,
+            [-1212426201] = true,
+            [2725924767] = true,
+            [-1569042529] = true,
+        }
+        if fireWeaponGroups[weaponGroup] then
+            return utils.showNotification(locale("npc_revive_firearm_block") or "Os paramédicos não atendem ferimentos a bala por questões de segurança.")
+        end
+    end
+
     local medicsOnline = lib.callback.await('ars_ambulancejob:getMedicsOnline', false)
     if medicsOnline > minimumOnServiceForNPC then return utils.showNotification(locale("medics_online")) end
     if player.timePassedForCommand > 0 then return utils.showNotification(locale("wait_time"):format(player.timePassedForCommand)) end
@@ -236,6 +258,8 @@ local function offlineRevive()
     stopPlayerDeath()
     DeleteEntity(ambulance)
     DeleteEntity(ambulanceDriver)
+    
+    TriggerServerEvent("ars_ambulancejob:npcReviveLog")
 end
 
 local timeToWaitForCommand = lib.load("config").timeToWaitForCommand * 60000

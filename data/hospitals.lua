@@ -3,7 +3,7 @@ return {
         paramedic = {
             model = "s_m_m_scientist_01",
             pos = {
-                vec4(312.0927, -596.1016, 42.2918, 338.7213),
+                vector4(1145.68, -1540.48, 34.38, 1.04),
                 -- vec4(-439.79, -324.24, 33.91, 157.32), -- adicione mais caso queira
             },
         },
@@ -12,7 +12,7 @@ return {
             min_grade = 2,
         },
         zone = {
-            pos = vec3(299.0, -585.28, 43.28),
+            pos = vector3(1141.39, -1539.42, 35.38),
             size = vec3(200.0, 200.0, 200.0),
         },
         blip = {
@@ -21,17 +21,17 @@ return {
             type = 61,
             scale = 1.0,
             color = 2,
-            pos = vector3(308.96, -591.52, 43.28),
+            pos = vector3(1141.39, -1539.42, 35.38),
         },
         respawn = {
             {
-                bedPoint = vector4(349.76, -583.44, 43.0, 150.04),
-                spawnPoint = vector4(348.84, -583.36, 42.32, 68.24),
+                bedPoint = vector4(1148.89, -1562.97, 36.29, 357.72),
+                spawnPoint = vector4(1147.57, -1562.83, 35.38, 93.81),
                 isDeadRespawn = true, -- local pra spawnar quando morre
             },
             {
-                bedPoint = vector4(346.96, -590.64, 44.12, 338.0),
-                spawnPoint = vector4(348.84, -583.36, 42.32, 68.24),
+                bedPoint = vector4(1148.86, -1565.6, 36.29, 181.68),
+                spawnPoint = vector4(1147.57, -1562.83, 35.38, 93.81),
             },
         },
         pharmacy = {
@@ -49,158 +49,148 @@ return {
                     pos = vector3(315.5516, -598.6013, 43.2918),
                 },
                 items = {
-                    { name = "medicalbag", label = "Bolsa Médica", icon = "fas fa-briefcase-medical", price = 10 },
-                    { name = "bandage", label = "Bandagem", icon = "fas fa-bandage", price = 10 },
-                    { name = "defibrillator", label = "Desfibrilador", icon = "fas fa-heartbeat", price = 10 },
-                    { name = "tweezers", label = "Pinça", icon = "fas fa-tools", price = 10 },
-                    { name = "burncream", label = "Aloe Vera", icon = "fas fa-fire-extinguisher", price = 10 },
-                    { name = "suturekit", label = "Kit de Suturação", icon = "fas fa-scissors", price = 10 },
-                    { name = "icepack", label = "Pacote de Gelo", icon = "fas fa-snowflake", price = 10 },
+                    { name = "medicalbag",    label = "Bolsa Médica",     icon = "fas fa-briefcase-medical", price = 10 },
+                    { name = "bandage",       label = "Bandagem",         icon = "fas fa-bandage",           price = 10 },
+                    { name = "defibrillator", label = "Desfibrilador",    icon = "fas fa-heartbeat",         price = 10 },
+                    { name = "tweezers",      label = "Pinça",            icon = "fas fa-tools",             price = 10 },
+                    { name = "burncream",     label = "Aloe Vera",        icon = "fas fa-fire-extinguisher", price = 10 },
+                    { name = "suturekit",     label = "Kit de Suturação", icon = "fas fa-scissors",          price = 10 },
+                    { name = "icepack",       label = "Pacote de Gelo",   icon = "fas fa-snowflake",         price = 10 },
+                    { name = "Dipiroka",       label = "Di pi ro ka",   icon = "fas fa-snowflake",         price = 500 },
+                    { name = "kit_sobrevivencia",       label = "Kit de sobrevivencia",   icon = "fas fa-snowflake",         price = 1500 },
+                    { name = "kit_medico",       label = "kit  medico",   icon = "fas fa-snowflake",         price = 500 },
                 },
             },
+
             ["ems_shop_2"] = {
                 job = false,
                 label = "Farmácia",
-                grade = 0, -- works only if job true
-                pos = vector3(303.84, -597.6, 43.28),
+                grade = 0, -- >>>> farmacia em outro lugar
+                pos = vector3(-3157.84, 1095.08, 20.86),
                 blip = {
                     enable = true,
                     name = "Farmácia",
                     type = 61,
                     scale = 0.7,
-                    color = 2,
-                    pos = vector3(303.84, -597.6, 43.28),
+                    color = 3,
+                    pos = vector3(-3157.84, 1095.08, 20.86),
                 },
                 items = {
-                    { name = "bandage", label = "Bandagem", icon = "fas fa-bandage", price = 10 },
+                    { name = "medicalbag", label = "Bolsa Médica", icon = "fas fa-briefcase-medical", price = 1000 },
+                    { name = "bandage",    label = "Bandagem",     icon = "fas fa-bandage",           price = 500 },
+                    { name = "Dipiroka",    label = "Dipiroka",     icon = "fas fa-bandage",           price = 1500 },
+                },
+            },
+
+            ["ems_shop_3"] = {
+                job = false,
+                label = "Farmácia",
+                grade = 0, -- >>>> farmacia em outro lugar
+                pos = vector3(1836.11, 3668.18, 33.68),
+                blip = {
+                    enable = true,
+                    name = "Farmácia",
+                    type = 61,
+                    scale = 0.7,
+                    color = 3,
+                    pos = vector3(1836.11, 3668.18, 33.68),
+                },
+                items = {
+                    { name = "medicalbag", label = "Bolsa Médica", icon = "fas fa-briefcase-medical", price = 10 },
+                    { name = "bandage",    label = "Bandagem",     icon = "fas fa-bandage",           price = 10 },
+                },
+            },
+
+            ["ems_shop_ilha"] = {
+                job = false,
+                label = "Farmácia",
+                grade = 0, -- >>>> farmacia em outro lugar <<< ilha preço mais barato
+                pos = vector3(-3566.56, 6368.09, 24.78),
+                blip = {
+                    enable = true,
+                    name = "Farmácia",
+                    type = 61,
+                    scale = 0.7,
+                    color = 3,
+                    pos = vector3(-3566.56, 6368.09, 24.78),
+                },
+                items = {
+                    { name = "medicalbag", label = "Bolsa Médica", icon = "fas fa-briefcase-medical", price = 10 },
+                    { name = "bandage",    label = "Bandagem",     icon = "fas fa-bandage",           price = 10 },
+                },
+            },
+
+
+            ["ems_shop_4"] = {
+                job = false,
+                label = "Farmácia",
+                grade = 0, -- works only if job true >>>>>>> esse que muda
+                pos = vector3(1141.61, -1543.35, 35.38),
+                blip = {
+                    enable = false,
+                    name = "Farmácia",
+                    type = 61,
+                    scale = 0.7,
+                    color = 2,
+                    pos = vector3(1135.6, -1535.38, 35.38),
+                },
+                items = {
+                    { name = "bandage",    label = "Bandagem",   icon = "fas fa-bandage", price = 10 },
                     { name = "adrenaline", label = "Adrenalina", icon = "fas fa-syringe", price = 10 },
                 },
             },
         },
-        garage = {
-            -- ['ems_garage_1'] = {
-            --     pedPos = vector4(291.2237, -614.9087, 42.4234, 332.9413),
-            --     model = 'mp_m_weapexp_01',
-            --     spawn = vector4(294.28, -608.32, 43.32, 69.6),
-            --     deposit = vector3(294.28, -608.32, 43.32),
-            --     driverSpawnCoords = vector3(297.56, -600.52, 43.32),
-
-            --     vehicles = {
-            --         {
-            --             label = 'Ambulance',
-            --             spawn_code = 'ambulance',
-            --             min_grade = 3,
-            --             modifications = {} -- es. {color1 = {255, 12, 25}}
-            --         },
-            --     }
-            -- }
+        garage = {},
+        clothes = { enable = false },
+    },
+    ["viceroy"] = {
+        paramedic = {
+            model = "s_m_m_scientist_01",
+            pos = {
+                vector4(-794.67, -1185.5, 5.93, 226.27),
+            },
         },
-        clothes = {
+        zone = {
+            pos = vector3(-791.0, -1178.0, 6.93),
+            size = vec3(50.0, 50.0, 50.0),
+        },
+        blip = {
             enable = false,
-            pos = vector4(300.7454, -597.4542, 42.2918, 298.0781),
-            model = "a_f_m_bevhills_01",
-            male = {
-                [1] = {
-                    ["Officier"] = {
-                        ["mask_1"] = 0,
-                        ["mask_2"] = 0,
-                        ["arms"] = 0,
-                        ["tshirt_1"] = 15,
-                        ["tshirt_2"] = 0,
-                        ["torso_1"] = 86,
-                        ["torso_2"] = 0,
-                        ["bproof_1"] = 0,
-                        ["bproof_2"] = 0,
-                        ["decals_1"] = 0,
-                        ["decals_2"] = 0,
-                        ["chain_1"] = 0,
-                        ["chain_2"] = 0,
-                        ["pants_1"] = 10,
-                        ["pants_2"] = 2,
-                        ["shoes_1"] = 56,
-                        ["shoes_2"] = 0,
-                        ["helmet_1"] = 34,
-                        ["helmet_2"] = 0,
-                        ["glasses_1"] = 34,
-                        ["glasses_2"] = 1,
-                    },
-                    ["Sargent"] = {
-                        ["mask_1"] = 0,
-                        ["mask_2"] = 0,
-                        ["arms"] = 0,
-                        ["tshirt_1"] = 15,
-                        ["tshirt_2"] = 0,
-                        ["torso_1"] = 21,
-                        ["torso_2"] = 0,
-                        ["bproof_1"] = 0,
-                        ["bproof_2"] = 0,
-                        ["decals_1"] = 0,
-                        ["decals_2"] = 0,
-                        ["chain_1"] = 0,
-                        ["chain_2"] = 0,
-                        ["pants_1"] = 10,
-                        ["pants_2"] = 2,
-                        ["shoes_1"] = 23,
-                        ["shoes_2"] = 0,
-                        ["helmet_1"] = 34,
-                        ["helmet_2"] = 0,
-                        ["glasses_1"] = 34,
-                        ["glasses_2"] = 1,
-                    },
-                },
-                [2] = {
-                    ["Sargent"] = {
-                        ["mask_1"] = 0,
-                        ["mask_2"] = 0,
-                        ["arms"] = 0,
-                        ["tshirt_1"] = 15,
-                        ["tshirt_2"] = 0,
-                        ["torso_1"] = 86,
-                        ["torso_2"] = 0,
-                        ["bproof_1"] = 0,
-                        ["bproof_2"] = 0,
-                        ["decals_1"] = 0,
-                        ["decals_2"] = 0,
-                        ["chain_1"] = 0,
-                        ["chain_2"] = 0,
-                        ["pants_1"] = 10,
-                        ["pants_2"] = 2,
-                        ["shoes_1"] = 56,
-                        ["shoes_2"] = 0,
-                        ["helmet_1"] = 34,
-                        ["helmet_2"] = 0,
-                        ["glasses_1"] = 34,
-                        ["glasses_2"] = 1,
-                    },
-                },
+            name = "Viceroy Clinic",
+            type = 61,
+            scale = 1.0,
+            color = 2,
+            pos = vector3(-791.0, -1189.0, 6.93),
+        },
+        respawn = {
+            {
+                bedPoint = vector4(-793.23, -1190.84, 21.95, 114.32),
+                spawnPoint = vector4(-791.68, -1191.35, 21.95, 114.32),
+                isDeadRespawn = true,
             },
-            female = {
-                [1] = {
-                    ["Officier"] = {
-                        ["mask_1"] = 0,
-                        ["mask_2"] = 0,
-                        ["arms"] = 0,
-                        ["tshirt_1"] = 15,
-                        ["tshirt_2"] = 0,
-                        ["torso_1"] = 86,
-                        ["torso_2"] = 0,
-                        ["bproof_1"] = 0,
-                        ["bproof_2"] = 0,
-                        ["decals_1"] = 0,
-                        ["decals_2"] = 0,
-                        ["chain_1"] = 0,
-                        ["chain_2"] = 0,
-                        ["pants_1"] = 10,
-                        ["pants_2"] = 2,
-                        ["shoes_1"] = 56,
-                        ["shoes_2"] = 0,
-                        ["helmet_1"] = 34,
-                        ["helmet_2"] = 0,
-                        ["glasses_1"] = 34,
-                        ["glasses_2"] = 1,
-                    },
+        },
+        pharmacy = {
+            ["ems_shop_5"] = {
+                job = false,
+                label = "Farmácia",
+                grade = 0,
+                pos = vector3(-784.65, -1188.07, 6.93),
+                blip = {
+                    enable = true,
+                    name = "Farmácia",
+                    type = 61,
+                    scale = 0.7,
+                    color = 3,
+                    pos = vector3(-784.65, -1188.07, 6.93),
+                },
+                items = {
+                    { name = "medicalbag", label = "Bolsa Médica", icon = "fas fa-briefcase-medical", price = 10 },
+                    { name = "bandage",    label = "Bandagem",     icon = "fas fa-bandage",           price = 10 },
                 },
             },
         },
+        garage = {},
+        bossmenu = {},
+        clothes = { enable = false },
     },
 }

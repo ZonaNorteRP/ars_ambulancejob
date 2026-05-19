@@ -15,14 +15,22 @@ end
 
 function Framework.hasJob(target, jobs)
     local xPlayer = QBCore.Functions.GetPlayer(target)
-    if not xPlayer then return end
+    if not xPlayer then return false end
 
     if type(jobs) == "table" then
         for index, jobName in pairs(jobs) do
-            if xPlayer.PlayerData.job.name == jobName and xPlayer.PlayerData.job.onduty then return true end
+            if xPlayer.PlayerData.job.name == jobName then
+                if jobName == "bombeiro" or jobName == "medico" or xPlayer.PlayerData.job.onduty then
+                    return true
+                end
+            end
         end
     else
-        return xPlayer.PlayerData.job.name == jobs
+        if xPlayer.PlayerData.job.name == jobs then
+            if jobs == "bombeiro" or jobs == "medico" or xPlayer.PlayerData.job.onduty then
+                return true
+            end
+        end
     end
 
     return false
